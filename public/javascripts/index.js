@@ -18,8 +18,8 @@ movies.init = function(){
 
 
  movies.Click= function(){
-    $("header").on('click',function(){
-        console.log(this);
+    $('.link').on('click',function(){
+        console.log("hello");
         let link =$(this).attr("data-href");
         window.open(link,'_blank');
         return false;
@@ -41,6 +41,8 @@ movies.generateMarkup = function(){
       
     
         template += '<div class="item">';
+
+        template += '<div class="link" data-href="'+id.movie_imdb_link+'">';
 
         template += '<div class="header">';
 
@@ -90,7 +92,7 @@ movies.generateMarkup = function(){
         template +=  '</div>';
         
         
-        
+        template += '</div>';
 
         template += '</div>';
        
