@@ -1,29 +1,44 @@
-news = {};
-news.database = [];
-news.loadAssets = function() {
+movies = {};
+movies.database = [];
+movies.loadAssets = function() {
     $.getJSON('http://starlord.hackerearth.com/movieslisting', function(data){
-        news.database =  data;
-        news.init();
+        movies.database =  data;
+        movies.init();
     });
 };
 
 
 
 
-news.init = function(){
-    news.generateMarkup();
+movies.init = function(){
+    movies.generateMarkup();
+
+    movies.Click();
+} 
+
+
+ movies.Click= function(){
+    $("header").on('click',function(){
+        console.log(this);
+        let link =$(this).attr("data-href");
+        window.open(link,'_blank');
+        return false;
+    })
 }
 
-news.generateMarkup = function(){
+
+movies.generateMarkup = function(){
     var template = '';
 
     
-    $.each(news.database, function(index){
-        var db = news.database;
+    $.each(movies.database, function(index){
+        var db = movies.database;
         var id = db[index];
-console.log(id.movie_imdb_link);
-        
+// console.log(id.movie_imdb_link);
 
+
+// template +=' <a href="'+id.movie_imdb_link+'">';
+      
     
         template += '<div class="item">';
 
@@ -44,37 +59,37 @@ console.log(id.movie_imdb_link);
         template +=  '</div>';
 
 
-        template += '<div class="node desc" >';
+        template += '<div class="director" >';
 
-        template += '<span> </span> ' + id.director_name;
+        template += '<span> Director :</span> ' + id.director_name;
 
         template +=  '</div>';
 
-        template += '<div class="node ">';
+        template += '<div class="director" >';
 
-        template += '<span class="node pub"></span> ' + id.actor_1_name + id.actor_2_name;
-        
-        template += '<span>|</span> ';
+        template += '<span> Actors :</span> ' + id.actor_1_name + id.actor_2_name;
 
-        template += '<div class="node ">';
+        template +=  '</div>';
 
-        template += '<span class="node pub"></span> ' + id.genres;
-        
-        template += '<span>|</span> ';
-        
+        template += '<div class="genres" >';
+
+        template += '<span> Genres :</span> ' + id.genres;
+
+        template +=  '</div>';
        
-        template += '<div class="node ">';
+        template += '<div class="Language" >';
 
-        template += '<span class="node pub"></span> ' + id.language + id.country ;
+        template += '<span> Language :</span> ' + id.language;
+
+        template +=  '</div>';
+
+        template += '<div class="Year" >';
+     
+        template += '<span>  Year :</span> ' + id.title_year;
+
+        template +=  '</div>';
         
-        template += '<span>|</span> ';
-
         
-        template += '<span  class="node pubData"></span> ' + id.title_year;
-
-        template +=' <a href="'+id.movie_imdb_link+'">click here';
-        template +='</a>'
-
         
 
         template += '</div>';
@@ -93,6 +108,9 @@ console.log(id.movie_imdb_link);
     $(".content").append(template);
 
 
+    movies.Click();
+
+
 }
 
-news.loadAssets();
+movies.loadAssets();
