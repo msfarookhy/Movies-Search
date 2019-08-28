@@ -5,16 +5,24 @@ news.loadAssets = function() {
         news.database =  data;
         news.init();
     });
+
+   
+    
 };
 
 news.init = function(){
     news.generateMarkup();
 }
 
+
+
+
+
 news.generateMarkup = function(){
-    var template = '';
+     var template = '';
 
     
+
     $.each(news.database, function(index){
         var db = news.database;
         var id = db[index];

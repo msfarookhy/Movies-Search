@@ -5,9 +5,13 @@ movies.loadAssets = function() {
         movies.database =  data;
         movies.init();
     });
+
+    
 };
 
 
+
+  
 
 
 movies.init = function(){
@@ -15,6 +19,9 @@ movies.init = function(){
 
     movies.Click();
 } 
+ 
+
+
 
 
  movies.Click= function(){
@@ -25,6 +32,13 @@ movies.init = function(){
         return false;
     })
 }
+
+function imgError(image) {
+    image.onerror = "id.thumbnailUrl";
+    image.src = "/public/javascripts/ths.jpegf";
+    return true;
+}
+ // <img src="/public/javascripts/ths.jpeg" onerror="thumbnailUrl ;"/>
 
 
 movies.generateMarkup = function(){
@@ -109,6 +123,13 @@ movies.generateMarkup = function(){
     
     $(".content").append(template);
 
+    //  <img src="/public/javascripts/ths.jpeg" onerror="thumbnailUrl ;"/>
+
+
+    // $("img").error(function () {
+    //     $(this).unbind("error").attr("src", "/public/javascripts/ths.jpeg");
+    //   });
+    
 
     movies.Click();
 
